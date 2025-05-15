@@ -19,4 +19,12 @@ pick up
 ==> delivers data to app for reception
 reaction
 
+pushd <filename>.html;  python3 -m http.server 9999; popd;
+==>running html, then c/v into browser
 
+subnet masks :: 
+divides up the IP address into host : 255, and device 0;
+standard home mask 255.255.255.0, so if home computer 192.0.5.63, then home alexa 192.0.5.?
+IPs can be divided binarily, too. so, home computer IP :
+11000000.00000000.00000101.00111111
+1, 2, 4, 8, 16, 32, 64, 128
