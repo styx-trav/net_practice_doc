@@ -1,0 +1,22 @@
+4 layers of comm
+	app: user facing ; data-formatting, encryption, session management
+	transport(TCP/UDP): transmission (softw); flow control, segmentation, reassembly
+		TCP: connection oriented, reliable but slow (flow control, error checking, etc.)
+		UDP: faster, connectionless transmission, no guarantees
+	netw/internet(IP): navigator ; packet forwardingm fragmentation, logical addressing
+		IP: assign unique IP addresses to devices, picks the most efficient path for data transmission
+	netw access: physical transmission (hardw); MAC addressing, error detection at hardw link (Ethernet, WiFi etc.)
+
+user data
+==> app formats
+==> broken up into packets, given headers and src/dst ports, picks TCP or UDP
+==> adds the IP addresses to each packet, and picks its opt route
+==> packets->frames, adds MAC addresses, sends data as binary bits
+pick up
+==> receives (frames->packets ?)
+==> checks IP addresses, removes, IP header
+==> reassembles TCP segs in order, checks data integrity
+==> delivers data to app for reception
+reaction
+
+
