@@ -28,3 +28,21 @@ standard home mask 255.255.255.0, so if home computer 192.0.5.63, then home alex
 IPs can be divided binarily, too. so, home computer IP :
 11000000.00000000.00000101.00111111
 1, 2, 4, 8, 16, 32, 64, 128
+
+okay, so : the rules, deduced from trial and error
+
+	cannot overflow (0 - 255)
+	mask : 255.255.255.224 seems to mean :
+		range-size:: 255 - 224 = 31
+		range from 224 - 31 = 193 to 222 (always 2 unused for network reasons)
+	so it reasons that ::
+	mask : 255.255.255.252 implies
+		range-size:: 255 - 252 = 3
+		range from 252 - 3 = 249 to 250
+		test confirms, and adds the range can also start from 0 (1;2 [no 0]instead of 249;250)
+	further tests imply range can start anywhere ? unsure
+		(ex: ...224 && ...240 masks, range 132 (130, 131, with established 129-142 range (size 15))
+	loopback address (localhost) == 127.0.0.1 -->unusable, switch 128
+	all interfaces on a router need different masks for distribution
+	been doing interface mask == host mask, unsure if needed, seen evidence against
+	device routes :: default (unless internet, in which case refer to sent package (ex:8.8.8.8/0)) -> adjoined interface
