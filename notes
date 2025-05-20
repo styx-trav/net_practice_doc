@@ -78,4 +78,4 @@ valid host range 62 :	subnet 170.141.205.0
 ooooookay, so just : a rewording of our rules ::
 	all subnet masks should match on a network (including router int to router int), and the range must as well
 	ranges must differ between router interfaces so they're sent in the proper direction
-	if a destination + mask is set in a reroute, all destinations must be in range, and then divided within separate ranges if necesary
+	if a destination + mask is set in a reroute, all destinations must be in range, and then divided within separate ranges if necessary
