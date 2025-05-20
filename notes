@@ -46,3 +46,36 @@ okay, so : the rules, deduced from trial and error
 	all interfaces on a router need different masks for distribution
 	been doing interface mask == host mask, unsure if needed, seen evidence against
 	device routes :: default (unless internet, in which case refer to sent package (ex:8.8.8.8/0)) -> adjoined interface
+	
+	
+	
+128	64	32	16	8	4	2	1
+
+1	1	1	1	0	0	0	0
+
+4 bits for address, so 2^4 = 16; broadcast addresses 15
+address at .12 so between 0 and 16, within a 163.49.250.0/28 subnet
+valid host range 14 :	subnet 163.49.250.0
+			min address 163.49.250.1
+			max address 163.49.250.14
+			host address 163.49.250.15
+
+
+same for our destination from the internet ::
+
+128	64	32	16	8	4	2	1
+
+1	1	0	0	0	0	0	0
+
+6 bits for address, so 2^6 = 64; broadcast addresses 63
+subnet at .0 so between 0 and 64, within a 170.141.205.0/26 subnet
+valid host range 62 :	subnet 170.141.205.0
+			min address 170.141.205.1
+			max address 170.141.205.62
+			host address 170.141.205.63
+
+
+ooooookay, so just : a rewording of our rules ::
+	all subnet masks should match on a network (including router int to router int), and the range must as well
+	ranges must differ between router interfaces so they're sent in the proper direction
+	if a destination + mask is set in a reroute, all destinations must be in range, and then divided within separate ranges if necesary
